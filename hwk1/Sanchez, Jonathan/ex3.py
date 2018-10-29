@@ -10,7 +10,7 @@ def file_to_wordlist(fname):
         cleaned_line = []
         line_strs = line.split(" ")
         for word in line_strs:
-            word = word.translate(None, '.,?!":;()*[]')
+            word = word.translate(None, '].,?!":;()*[')
             word = word.lower()
             if word != "":  # check for empty string here
                 cleaned_line.append(word)
@@ -49,3 +49,8 @@ def wordfreq_to_wordpriority(wordfreq):
     return [heapq.heappop(wordpriority) for i in range (len(wordpriority))]
 
 
+if __name__ == "__main__":
+    wordlist = file_to_wordlist("/home/jesanchez/git/rbe3002hwk/hwk1/alice_ascii.txt")
+    wordfreq = wordlist_to_wordfreq(wordlist)
+    wordpriority = wordfreq_to_wordpriority(wordfreq)
+    print wordpriority
